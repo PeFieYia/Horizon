@@ -2,7 +2,7 @@
   "version": "1.0",
   "ai": {
     "provider": "deepseek",
-    "model": "deepseek-v4-flash",
+    "model": "deepseek-chat",
     "base_url": "https://api.deepseek.com",
     "api_key_env": "DEEPSEEK_API_KEY",
     "temperature": 0.3,
@@ -23,6 +23,11 @@
         "enabled": true
       },
       {
+        "type": "user_events",
+        "username": "ml-explore",
+        "enabled": true
+      },
+      {
         "type": "repo_releases",
         "owner": "vllm-project",
         "repo": "vllm",
@@ -39,12 +44,30 @@
         "owner": "triton-lang",
         "repo": "triton",
         "enabled": true
+      },
+      {
+        "type": "repo_releases",
+        "owner": "deepseek-ai",
+        "repo": "DeepSeek-V3",
+        "enabled": true
+      },
+      {
+        "type": "repo_releases",
+        "owner": "openai",
+        "repo": "openai-python",
+        "enabled": true
+      },
+      {
+        "type": "repo_releases",
+        "owner": "langchain-ai",
+        "repo": "langchain",
+        "enabled": true
       }
     ],
     "hackernews": {
       "enabled": true,
       "fetch_top_stories": 30,
-      "min_score": 150
+      "min_score": 100
     },
     "rss": [
       {
@@ -60,91 +83,72 @@
         "category": "github-trending"
       },
       {
-        "name": "Semianalysis",
-        "url": "https://newsletter.semianalysis.com/feed",
+        "name": "Hugging Face Blog",
+        "url": "https://huggingface.co/blog/feed.xml",
         "enabled": true,
-        "category": "semiconductors"
+        "category": "ai-ml"
       },
       {
-        "name": "LWN.net",
-        "url": "https://lwn.net/headlines/full_text?key=${LWN_KEY}",
+        "name": "Google AI Blog",
+        "url": "https://blog.research.google/feed.xml",
         "enabled": true,
-        "category": "linux-kernel"
+        "category": "ai-ml"
       }
     ],
     "reddit": {
-      "enabled": true,
-      "subreddits": [
-        {
-          "subreddit": "MachineLearning",
-          "enabled": true,
-          "sort": "hot",
-          "time_filter": "day",
-          "fetch_limit": 10,
-          "min_score": 60
-        },
-        {
-          "subreddit": "LocalLLaMA",
-          "enabled": true,
-          "sort": "hot",
-          "time_filter": "day",
-          "fetch_limit": 10,
-          "min_score": 60
-        }
-      ],
+      "enabled": false,
+      "subreddits": [],
       "users": [],
-      "fetch_comments": 10
+      "fetch_comments": 5
+    },
+    "twitter": {
+      "enabled": false,
+      "users": [],
+      "fetch_limit": 10
+    },
+    "openbb": {
+      "enabled": false,
+      "fetch_filings": false
+    },
+    "ossinsight": {
+      "enabled": false
+    },
+    "gdelt": {
+      "enabled": false
+    },
+    "google_news": {
+      "enabled": false
     },
     "telegram": {
-      "enabled": true,
-      "channels": [
-        {
-          "channel": "zaihuapd",
-          "enabled": true,
-          "fetch_limit": 20
-        }
-      ]
+      "enabled": false
     }
   },
   "filtering": {
-    "ai_score_threshold": 8.0,
-    "time_window_hours": 24
-  },
-  "webhook": {
-    "enabled": true,
-    "url_env": "HORIZON_WEBHOOK_URL",
-    "delivery": "summary_and_items",
-    "overview_position": "last",
-    "platform": "feishu",
-    "layout": "collapsible",
-    "fallback_layout": "markdown",
-    "languages": [
-      "zh"
-    ],
-    "request_body": {
-      "msg_type": "interactive",
-      "card": {
-        "schema": "2.0",
-        "config": {
-          "wide_screen_mode": true
-        },
-        "header": {
-          "title": {
-            "tag": "plain_text",
-            "content": "#{message_title}"
-          },
-          "template": "blue"
-        },
-        "body": {
-          "elements": [
-            {
-              "tag": "markdown",
-              "content": "#{summary}"
-            }
-          ]
-        }
+    "ai_score_threshold": 6.0,
+    "time_window_hours": 24,
+    "max_items": 30,
+    "category_groups": {
+      "llm-agent": {
+        "limit": 8,
+        "categories": ["llm", "agent", "ai-tools"]
+      },
+      "ml-research": {
+        "limit": 8,
+        "categories": ["ai-ml", "machine-learning", "research"]
+      },
+      "open-source": {
+        "limit": 6,
+        "categories": ["github-trending", "oss"]
+      },
+      "industry": {
+        "limit": 6,
+        "categories": ["ai-news", "news", "business"]
       }
     },
-    "headers": ""
+    "default_group": "other",
+    "default_group_limit": 3
+  },
+  "webhook": {
+    "enabled": false
   }
 }
