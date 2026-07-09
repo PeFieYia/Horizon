@@ -81,8 +81,8 @@ def main():
             # Project root is two levels up from src/main.py
             project_root = Path(__file__).resolve().parent.parent
             src_dir = project_root / "data/summaries"
-            # Vault root is two levels up from project root
-            vault_root = project_root.parent.parent
+            # Vault is sibling directory
+            vault_root = project_root.parent / "PefieYia的知识库"
             dst_dir = vault_root / "资源/Horizon日报"
             if src_dir.exists():
                 dst_dir.mkdir(parents=True, exist_ok=True)
