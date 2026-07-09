@@ -1,0 +1,5 @@
+title: Horizon 每日速递
+description: AI 驱动的个人新闻雷达 - 每日中英双语简报
+theme: jekyll-theme-cayman
+plugins:
+  - jekyll-feed
