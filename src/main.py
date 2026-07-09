@@ -76,6 +76,25 @@ def main():
         orchestrator = HorizonOrchestrator(config, storage)
         asyncio.run(orchestrator.run(force_hours=args.hours))
 
+        # Copy summaries to 资源/Horizon日报/ for Obsidian vault access
+        try:
+            import shutil
+            # Project root is two levels up from src/main.py
+            project_root = Path(__file__).resolve().parent.parent
+            src_dir = project_root / "data/summaries"
+            # Vault root is two levels up from project root
+            vault_root = project_root.parent.parent
+            dst_dir = vault_root / "资源/Horizon日报"
+            if src_dir.exists():
+                dst_dir.mkdir(parents=True, exist_ok=True)
+                for f in src_dir.iterdir():
+                    if f.is_file():
+                        shutil.copy2(f, dst_dir / f.name)
+                count = len(list(dst_dir.iterdir()))
+                console.print(f"📁 Copied to 资源/Horizon日报/ ({count} files)\n")
+        except Exception as e:
+            console.print(f"  [dim]资源 copy: {e}[/dim]\n")
+
     except KeyboardInterrupt:
         console.print("\n[yellow]⚠️  Interrupted by user[/yellow]")
         sys.exit(0)
