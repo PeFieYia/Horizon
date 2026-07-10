@@ -9,8 +9,7 @@
     "max_tokens": 8192,
     "throttle_sec": 1,
     "languages": [
-      "zh",
-      "en"
+      "zh"
     ],
     "analysis_concurrency": 5,
     "enrichment_concurrency": 5
@@ -130,19 +129,34 @@
     "category_groups": {
       "llm-agent": {
         "limit": 8,
-        "categories": ["llm", "agent", "ai-tools"]
+        "categories": [
+          "llm",
+          "agent",
+          "ai-tools"
+        ]
       },
       "ml-research": {
         "limit": 8,
-        "categories": ["ai-ml", "machine-learning", "research"]
+        "categories": [
+          "ai-ml",
+          "machine-learning",
+          "research"
+        ]
       },
       "open-source": {
         "limit": 6,
-        "categories": ["github-trending", "oss"]
+        "categories": [
+          "github-trending",
+          "oss"
+        ]
       },
       "industry": {
         "limit": 6,
-        "categories": ["ai-news", "news", "business"]
+        "categories": [
+          "ai-news",
+          "news",
+          "business"
+        ]
       }
     },
     "default_group": "other",
