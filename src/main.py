@@ -76,14 +76,14 @@ def main():
         orchestrator = HorizonOrchestrator(config, storage)
         asyncio.run(orchestrator.run(force_hours=args.hours))
 
-        # Copy summaries to 资源/网页收藏/ for Obsidian vault access (tags stripped)
+        # Copy summaries to 原料库/网页收藏/ for Obsidian vault access (tags stripped)
         try:
             # Project root is two levels up from src/main.py
             project_root = Path(__file__).resolve().parent.parent
             src_dir = project_root / "data/summaries"
             # Vault is sibling directory
             vault_root = project_root.parent / "PefieYia的知识库"
-            dst_dir = vault_root / "资源/网页收藏"
+            dst_dir = vault_root / "原料库/网页收藏"
             if src_dir.exists():
                 dst_dir.mkdir(parents=True, exist_ok=True)
                 for f in src_dir.iterdir():
@@ -96,7 +96,7 @@ def main():
                         )
                         (dst_dir / f.name).write_text(clean, encoding="utf-8")
                 count = len(list(dst_dir.iterdir()))
-                console.print(f"📁 Copied to 资源/网页收藏/ ({count} files, tags stripped)\n")
+                console.print(f"📁 Copied to 原料库/网页收藏/ ({count} files, tags stripped)\n")
         except Exception as e:
             console.print(f"  [dim]资源 copy: {e}[/dim]\n")
 
